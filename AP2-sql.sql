@@ -173,38 +173,46 @@ CREATE TABLE produto (
     CHECK (preco > 0)
 );
 
+
 -- Populando a tabela de produto
 INSERT INTO produto (cod_produto, nome, descricao, preco, cod_fabricante) VALUES
-(1, 'requeijão', 'M', 11.06, 4),
-(2, 'macarrão', 'M', 14.59, 5),
-(3, 'chuchu', 'P', 3.02, 6),
-(4, 'abobrinha', 'P', 4.18, 7),
-(5, 'leite', 'P', 4.08, 8),
-(6, 'vassoura', 'P', 6.32, 9),
-(7, 'pasta de dente', 'P', 1.52, 1),
-(8, 'macarrão', 'P', 6.34, 3),
-(9, 'leite', 'P', 4.08, 2),
-(10, 'vassoura', 'P', 6.32, 20),
-(11, 'vassoura', 'M', 11.95, 18),
-(12, 'manteiga', 'G', 14.59, 19),
-(13, 'arroz', 'G', 19.36, 17),
-(14, 'manteiga', 'M', 9.98, 15),
-(15, 'feijão', 'G', 13.87, 16),
-(16, 'queijo', 'G', 17.87, 14),
-(17, 'pasta de dente', 'M', 7.22, 13),
-(18, 'pasta de dente', 'P', 1.52, 11),
-(19, 'manteiga', 'M', 9.98, 12),
-(20, 'abobrinha', 'G', 13.86, 10),
-(21, 'leite', 'P', 3.76, 30),
-(22, 'abobrinha', 'P', 4.18, 28),
-(23, 'beterraba', 'P', 2.87, 29),
-(24, 'contra filé', 'M', 33.50, 26),
-(25, 'abóbora', 'P', 1.38, 27),
-(26, 'feijão', 'P', 7.28, 24),
-(27, 'abóbora', 'P', 1.38, 23),
-(28, 'queijo', 'G', 17.87, 25),
-(29, 'chuchu', 'G', 9.45, 22),
-(30, 'presunto', 'M', 15.37, 21);
+(1, 'azeite', 'G', 55.50, 4),
+(2, 'vinho', 'T', 120.00, 5),
+(3, 'queijo parmesão', 'G', 75.00, 6),
+(4, 'salame', 'P', 65.00, 7),
+(5, 'chocolate', 'G', 58.00, 8),
+(6, 'café', 'P', 72.00, 9),
+(7, 'chá verde', 'G', 60.00, 1),
+(8, 'farinha de trigo', 'P', 80.00, 3),
+(9, 'leite condensado', 'P', 57.50, 2),
+(10, 'biscoito', 'P', 76.00, 20),
+(11, 'margarina', 'G', 92.00, 18),
+(12, 'presunto', 'G', 85.00, 19),
+(13, 'arroz integral', 'G', 70.00, 17),
+(14, 'azeitona', 'M', 95.50, 15),
+(15, 'feijão preto', 'G', 93.00, 16),
+(16, 'queijo minas', 'G', 100.00, 14),
+(17, 'suco de laranja', 'M', 78.00, 13),
+(18, 'refrigerante', 'P', 55.00, 11),
+(19, 'manteiga', 'G', 82.50, 12),
+(20, 'iogurte', 'G', 94.00, 10),
+(21, 'pão de forma', 'P', 86.50, 30),
+(22, 'tomate', 'P', 54.50, 28),
+(23, 'cenoura', 'P', 53.00, 29),
+(24, 'filé de frango', 'G', 135.00, 26),
+(25, 'abóbora', 'P', 52.00, 27),
+(26, 'batata doce', 'P', 75.00, 24),
+(27, 'cebola', 'P', 63.50, 23),
+(28, 'queijo cheddar', 'G', 128.00, 25),
+(29, 'chuchu', 'G', 59.00, 22),
+(30, 'presunto defumado', 'M', 115.00, 21);
+
+INSERT INTO produto (cod_produto, nome, descricao, preco, cod_fabricante) VALUES (31, 'produto nao vendido', 'M', 100.00, 21);
+update produto 
+set preco = 1100
+where cod_produto = 30;
+select * from produto;
+
 
 -- Criação de tabela compra
 CREATE TABLE compra (
@@ -220,35 +228,36 @@ CREATE TABLE compra (
 -- Populando a tabela de compra
 INSERT INTO compra (cod_compra, dt_data, hora, coddcliente, cod_funcionario) VALUES
 (1, '2023-06-30', '09:43:00', 1, 1),
-(13, '2023-06-05', '04:55:00', 2, 2),
-(10, '2023-04-17', '03:56:00', 3, 3),
-(23, '2023-11-02', '08:08:00', 4, 4),
-(30, '2023-06-28', '11:42:00', 5, 5),
-(8, '2023-12-24', '02:21:00', 6, 6),
-(7, '2023-08-20', '02:25:00', 7, 7),
+(2, '2023-01-24', '11:48:00', 29, 29),
+(3, '2023-12-10', '04:07:00', 30, 30),
 (4, '2023-01-17', '03:42:00', 8, 8),
-(12, '2023-08-04', '07:14:00', 9, 9),
-(25, '2023-10-12', '08:59:00', 10, 10),
-(9, '2024-04-04', '11:30:00', 11, 11),
-(15, '2024-01-21', '01:51:00', 12, 12),
-(24, '2023-09-06', '09:42:00', 13, 13),
-(18, '2023-06-19', '11:25:00', 14, 14),
-(22, '2023-03-08', '04:01:00', 15, 15),
-(27, '2023-05-19', '04:58:00', 16, 16),
-(11, '2024-02-06', '01:27:00', 17, 17),
-(19, '2023-05-06', '02:36:00', 18, 18),
-(16, '2023-01-15', '01:00:00', 19, 19),
+(5, '2023-06-28', '11:42:00', 5, 5),
 (6, '2023-07-23', '03:01:00', 20, 20),
-(21, '2023-07-20', '05:11:00', 21, 21),
-(20, '2024-01-18', '05:03:00', 22, 22),
-(17, '2023-06-22', '02:16:00', 23, 23),
-(31, '2023-11-26', '10:38:00', 24, 24),
-(26, '2023-01-25', '12:07:00', 25, 25),
+(7, '2023-08-20', '02:25:00', 7, 7),
+(8, '2023-12-24', '02:21:00', 6, 6),
+(9, '2024-04-04', '11:30:00', 11, 11),
+(10, '2023-04-17', '03:56:00', 3, 3),
+(11, '2024-02-06', '01:27:00', 17, 17),
+(12, '2023-08-04', '07:14:00', 9, 9),
+(13, '2023-06-05', '04:55:00', 2, 2),
 (14, '2023-06-07', '05:11:00', 26, 26),
+(15, '2024-01-21', '01:51:00', 12, 12),
+(16, '2023-01-15', '01:00:00', 19, 19),
+(17, '2023-06-22', '02:16:00', 23, 23),
+(18, '2023-06-19', '11:25:00', 14, 14),
+(19, '2023-05-06', '02:36:00', 18, 18),
+(20, '2024-01-18', '05:03:00', 22, 22),
+(21, '2023-07-20', '05:11:00', 21, 21),
+(22, '2023-03-08', '04:01:00', 15, 15),
+(23, '2023-11-02', '08:08:00', 4, 4),
+(24, '2023-09-06', '09:42:00', 13, 13),
+(25, '2023-10-12', '08:59:00', 10, 10),
+(26, '2023-01-25', '12:07:00', 25, 25),
+(27, '2023-05-19', '04:58:00', 16, 16),
 (28, '2024-04-11', '07:47:00', 27, 27),
 (29, '2023-11-08', '04:29:00', 28, 28),
-(2, '2023-01-24', '11:48:00', 29, 29),
-(3, '2023-12-10', '04:07:00', 30, 30);
+(30, '2023-12-10', '04:07:00', 30, 30),
+(31, '2023-11-26', '10:38:00', 24, 24);
 
 -- Criação de tabela possui
 CREATE TABLE possui (
@@ -262,70 +271,124 @@ CREATE TABLE possui (
 
 -- Populando a tabela de possui
 INSERT INTO possui (cod_compra, cod_produto, valor_desconto, qtd) VALUES
-(1, 1, 4.00, 820),
-(10, 2, 3.00, 969),
-(13, 3, 3.00, 661),
-(23, 4, 3.00, 166),
-(30, 5, 1.00, 614),
-(8, 6, 2.00, 315),
-(7, 7, 5.00, 318),
-(4, 8, 4.00, 187),
-(12, 9, 3.00, 176),
-(25, 10, 1.00, 981),
-(9, 11, 5.00, 892),
-(15, 12, 1.00, 30),
-(24, 13, 3.00, 684),
-(18, 14, 4.00, 691),
-(22, 15, 4.00, 923),
-(27, 16, 2.00, 483),
-(11, 17, 4.00, 262),
-(19, 18, 4.00, 236),
-(16, 19, 1.00, 525),
-(6, 20, 3.00, 964),
-(21, 21, 5.00, 538),
-(20, 22, 1.00, 166),
-(17, 23, 5.00, 4),
-(31, 24, 3.00, 592),
-(26, 25, 1.00, 98),
-(14, 26, 5.00, 116),
-(28, 27, 1.00, 754),
-(29, 28, 2.00, 356),
-(2, 29, 1.00, 154),
-(3, 30, 2.00, 942);
+(1, 1, 5.50, 50),
+(2, 2, 10.00, 20),
+(3, 3, 7.50, 30),
+(4, 4, 6.50, 40),
+(5, 5, 8.00, 60),
+(6, 6, 7.00, 25),
+(7, 7, 5.00, 70),
+(8, 8, 8.50, 80),
+(9, 9, 7.50, 90),
+(10, 10, 6.00, 100),
+(11, 11, 4.00, 45),
+(12, 12, 7.00, 35),
+(13, 13, 7.50, 55),
+(14, 14, 9.00, 65),
+(15, 15, 8.50, 75),
+(16, 16, 10.00, 85),
+(17, 17, 5.50, 95),
+(18, 18, 7.00, 20),
+(19, 19, 8.00, 30),
+(20, 20, 9.50, 40),
+(21, 21, 6.50, 50),
+(22, 22, 7.50, 60),
+(23, 23, 8.00, 70),
+(24, 24, 10.00, 80),
+(25, 25, 5.00, 90),
+(26, 26, 9.00, 100),
+(27, 27, 7.00, 110),
+(28, 28, 8.50, 120),
+(29, 29, 9.50, 130),
+(30, 30, 10.50, 140);
 
+INSERT INTO possui (cod_produto, valor_desconto, qtd) VALUES (1, 0, 10);
 
-
-
-
-DROP TABLE possui;
-DROP TABLE compra;
-DROP TABLE cliente;
-DROP TABLE produto;
-DROP TABLE fabricante;
-DROP TABLE funcionario;
+select * from possui;
 
 -- EX2
 
 -- a) Recupere o nome, a cidade e o gênero dos clientes solteiros
+select nome, cidade, genero from cliente
+where estadocivil = 'Solteiro';
 
 -- b) Recupere, em ordem alfabética, o nome de todas as cidades que possuem clientes
+select distinct cidade 
+from cliente
+order by cidade asc;
 
 -- c) Recupere o nome dos clientes que não realizaram compras de produtos de valores acima de 1000 Reais
+select nome
+from cliente 
+where nome not in
+(select cli.nome
+from cliente as cli, produto as pr, compra as comp, possui as pos
+where comp.coddcliente = cli.coddcliente and pos.cod_compra = comp.cod_compra and pos.cod_produto = pr.cod_produto and pr.preco > 1000
+order by cli.nome)
+order by nome asc;
+-- teste
+select cli.nome
+from cliente as cli, produto as pr, compra as comp, possui as pos
+where comp.coddcliente = cli.coddcliente and pos.cod_compra = comp.cod_compra and pos.cod_produto = pr.cod_produto and pr.preco > 1000
+order by cli.nome;
 
 -- d) Recupere o nome do cliente, o nome do funcionário e o site da marca do produto que ele comprou
+select cliente.nome, funcionario.nome, fabricante.site, produto.nome
+from cliente, funcionario, fabricante, compra, possui, produto
+where cliente.coddcliente = compra.coddcliente
+and funcionario.cod_funcionario = compra.cod_funcionario
+and possui.cod_compra = compra.cod_compra
+and possui.cod_produto = produto.cod_produto
+and produto.cod_fabricante = fabricante.cod_fabricante
+order by cliente.nome asc;
+
+
 
 -- e) Recupere o total de funcionários com idade maior que 60 anos, cujo estado civil seja Viúvo(a)
+select count(cod_funcionario)
+from funcionario
+where estadocivil = 'Viuvo' and YEAR(FROM_DAYS(DATEDIFF(current_date, dt_nascimento))) > 60;
+
 
 -- f) Recupere as 5 compras mais baratas
+select co.cod_compra, sum(po.qtd*pr.preco) as valor
+from compra as co, produto as pr, possui as po
+where co.cod_compra = po.cod_compra and pr.cod_produto = po.cod_produto
+group by co.cod_compra
+order by valor desc
+limit 5;
+
 
 -- g) Recupere quantidade total de vendas de produtos acima de 100 Reais
+select produto.cod_produto, produto.preco, count(compra.cod_compra) as qtdVendas
+from compra, possui, produto
+where compra.cod_compra = possui.cod_compra and produto.cod_produto = possui.cod_produto and produto.preco > 100
+group by cod_produto;
+
+
 
 -- h) Recupere a lista de produtos, em ordem alfabética, que nunca foram vendidos
+select nome
+from produto
+where cod_produto not in
+(select produto.cod_produto
+from possui, compra, produto
+where compra.cod_compra = possui.cod_compra and produto.cod_produto = possui.cod_produto
+order by produto.cod_produto asc);
+
 
 -- i) Recupere a valor total de compras realizadas por cada fabricante
+select fab.nome, sum(pos.qtd * pr.preco) as valor
+from fabricante as fab, possui as pos, produto as pr, compra as co
+where co.cod_compra = pos.cod_compra and pr.cod_produto = pos.cod_produto and fab.cod_fabricante = pr.cod_fabricante
+group by fab.nome
+order by valor desc;
 
 -- j) Recupere o valor total de compras que cada funcionário realizou
-
+select  func.cod_funcionario, sum(pr.preco * pos.qtd) as valor
+from produto as pr, compra as comp, possui as pos, funcionario as func
+where comp.cod_compra = pos.cod_compra and pr.cod_produto = pos.cod_produto and comp.cod_funcionario = func.cod_funcionario
+group by func.cod_funcionario;
 
 
 
