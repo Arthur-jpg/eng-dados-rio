@@ -118,6 +118,9 @@ INSERT INTO funcionario (cod_funcionario, nome, genero, dt_nascimento, estadociv
 (29, 'Hugo', 'M', '1977-03-01', 'Viuvo', 'Manaus', 'Amazonas', 'Data Coordinator'),
 (30, 'Debora', 'F', '1982-02-28', 'Divorciado', 'Brasília', 'Distrito Federal', 'GIS Technical Architect');
 
+update funcionario set dt_nascimento = '1960-10-10' where cod_funcionario = 4;
+update funcionario set dt_nascimento = '1959-09-10' where cod_funcionario = 11;
+update funcionario set dt_nascimento = '1950-10-10' where cod_funcionario = 8;
 
 
 -- Criação de tabela fabricante
@@ -208,6 +211,9 @@ INSERT INTO produto (cod_produto, nome, descricao, preco, cod_fabricante) VALUES
 (30, 'presunto defumado', 'M', 115.00, 21);
 
 INSERT INTO produto (cod_produto, nome, descricao, preco, cod_fabricante) VALUES (31, 'produto nao vendido', 'M', 100.00, 21);
+insert into produto (cod_produto, nome, descricao, preco, cod_fabricante) values (32, 'sal', 'm', 100.00, 20);
+delete from produto where cod_produto = 31;
+
 update produto 
 set preco = 1100
 where cod_produto = 30;
@@ -268,6 +274,8 @@ CREATE TABLE possui (
 	FOREIGN KEY (cod_produto) REFERENCES produto(cod_produto),
 	FOREIGN KEY (cod_compra) REFERENCES compra(cod_compra)
 );
+
+alter table pussui add primary key (cod_compra, cod_produto);
 
 -- Populando a tabela de possui
 INSERT INTO possui (cod_compra, cod_produto, valor_desconto, qtd) VALUES
@@ -355,7 +363,7 @@ select co.cod_compra, sum(po.qtd*pr.preco) as valor
 from compra as co, produto as pr, possui as po
 where co.cod_compra = po.cod_compra and pr.cod_produto = po.cod_produto
 group by co.cod_compra
-order by valor desc
+order by valor asc
 limit 5;
 
 
@@ -385,10 +393,11 @@ group by fab.nome
 order by valor desc;
 
 -- j) Recupere o valor total de compras que cada funcionário realizou
-select  func.cod_funcionario, sum(pr.preco * pos.qtd) as valor
+select  func.cod_funcionario, func.nome, sum(pr.preco * pos.qtd) as valor
 from produto as pr, compra as comp, possui as pos, funcionario as func
 where comp.cod_compra = pos.cod_compra and pr.cod_produto = pos.cod_produto and comp.cod_funcionario = func.cod_funcionario
-group by func.cod_funcionario;
+group by func.cod_funcionario
+order by valor desc;
 
 
 
